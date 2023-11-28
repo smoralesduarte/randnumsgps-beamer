@@ -1,0 +1,17 @@
+[0] Config.pm:307> INFO - This is Biber 2.17
+[0] Config.pm:310> INFO - Logfile is 'presentation_1.blg'
+[65] biber:340> INFO - === lun nov 27, 2023, 21:38:02
+[77] Biber.pm:418> INFO - Reading 'presentation_1.bcf'
+[132] Biber.pm:972> INFO - Found 2 citekeys in bib section 0
+[145] Biber.pm:4383> INFO - Processing section 0
+[154] Biber.pm:4574> INFO - Looking for bibtex file 'library.bib' for section 0
+[155] bibtex.pm:1713> INFO - LaTeX decoding ...
+[174] bibtex.pm:1518> INFO - Found BibTeX data source 'library.bib'
+[216] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[216] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[216] Biber.pm:4203> INFO - Sorting list 'none/global//global/global' of type 'entry' with template 'none' and locale 'en-US'
+[216] Biber.pm:4209> INFO - No sort tailoring available for locale 'en-US'
+[217] bbl.pm:654> INFO - Writing 'presentation_1.bbl' with encoding 'UTF-8'
+[218] bbl.pm:757> INFO - Output to presentation_1.bbl
+[218] Biber.pm:130> WARN - Duplicate entry key: 'aliev2011expected' in file 'library.bib', skipping ...
+[218] Biber.pm:132> INFO - WARNINGS: 1

@@ -1,0 +1,539 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Beamer Presentation
+% LaTeX Template
+% Version 1.0 (10/11/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND THEMES
+%----------------------------------------------------------------------------------------
+
+\documentclass{beamer}
+
+\mode<presentation> {
+
+% The Beamer class comes with a number of default slide themes
+% which change the colors and layouts of slides. Below this is a list
+% of all the themes, uncomment each in turn to see what they look like.
+
+%\usetheme{default}
+%\usetheme{AnnArbor}
+%\usetheme{Antibes}
+%\usetheme{Bergen}
+%\usetheme{Berkeley}
+%\usetheme{Berlin}
+%\usetheme{Boadilla}
+%\usetheme{CambridgeUS}
+%\usetheme{Copenhagen}
+%\usetheme{Darmstadt}
+%\usetheme{Dresden}
+%\usetheme{Frankfurt}
+%\usetheme{Goettingen}
+%\usetheme{Hannover}
+%\usetheme{Ilmenau}
+%\usetheme{JuanLesPins}
+%\usetheme{Luebeck}
+\usetheme{Madrid}
+%\usetheme{Malmoe}
+%\usetheme{Marburg}
+%\usetheme{Montpellier}
+%\usetheme{PaloAlto}
+%\usetheme{Pittsburgh}
+%\usetheme{Rochester}
+%\usetheme{Singapore}
+%\usetheme{Szeged}
+%\usetheme{Warsaw}
+
+\AtBeginSection[]{
+  \begin{frame}
+  \vfill
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+    \usebeamerfont{title}\insertsectionhead\par%
+  \end{beamercolorbox}
+  \vfill
+  \end{frame}
+}
+
+
+% As well as themes, the Beamer class has a number of color themes
+% for any slide theme. Uncomment each of these in turn to see how it
+% changes the colors of your current slide theme.
+
+%\usecolortheme{albatross}
+%\usecolortheme{beaver}
+%\usecolortheme{beetle}
+%\usecolortheme{crane}
+%\usecolortheme{dolphin}
+%\usecolortheme{dove}
+%\usecolortheme{fly}
+%\usecolortheme{lily}
+%\usecolortheme{orchid}
+%\usecolortheme{rose}
+%\usecolortheme{seagull}
+%\usecolortheme{seahorse}
+%\usecolortheme{whale}
+%\usecolortheme{wolverine}
+
+%\setbeamertemplate{footline} % To remove the footer line in all slides uncomment this line
+%\setbeamertemplate{footline}[page number] % To replace the footer line in all slides with a simple slide count uncomment this line
+
+%\setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides uncomment this line
+}
+
+\usepackage{graphicx} % Allows including images
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+
+\usepackage{tikz}
+%\usepackage{enumitem}
+\usepackage[backend=biber,sorting=none,style=ieee]{biblatex}
+\addbibresource{library.bib}
+
+\def\NN{\ensuremath{\mathbb{N}}}
+\def\N{\ensuremath{\mathbb{N}}}
+\def\ZZ{\ensuremath{\mathbb{Z}}}
+\def\Z{\ensuremath{\mathbb{Z}}}
+\def\QQ{\ensuremath{\mathbb{Q}}}
+\def\Q{\ensuremath{\mathbb{Q}}}
+\def\RR{\ensuremath{\mathbb{R}}}
+\def\R{\ensuremath{\mathbb{R}}}
+\def\CC{\ensuremath{\mathbb{C}}}
+\def\FF{\ensuremath{\mathbb{F}}}
+\def\Pr{\ensuremath{\mathrm{Pr}}}
+\def\Var{\ensuremath{\mathrm{Var}}}
+\def\Cov{\ensuremath{\mathrm{Cov}}}
+\def\EE{\ensuremath{\mathrm{E}}}
+\newcommand{\mathdefault}[1][]{}
+
+\newcommand\xqed[1]{%
+  \leavevmode\unskip\penalty9999 \hbox{}\nobreak\hfill
+  \quad\hbox{#1}}
+\newcommand\tqed{\xqed{$\triangle$}}
+
+
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\title[Random numerical semigroups]{Random numerical semigroups and sums of subsets of cyclic groups} % The short title appears at the bottom of every slide, the full title is only on the title page
+
+\author{Santiago Morales Duarte} % Your name
+\institute[Uniandes] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
+{
+Universidad de los Andes\\ % Your institution for the title page
+\medskip
+\textit{s.morales30@uniandes.edu.co} % Your email address
+}
+\date{\today} % Date, can be changed to a custom date
+
+\begin{document}
+
+\begin{frame}
+\titlepage % Print the title page as the first slide
+\end{frame}
+
+\begin{frame}
+\frametitle{Overview} % Table of contents slide, comment this block out to remove it
+\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+%	PRESENTATION SLIDES
+%----------------------------------------------------------------------------------------
+
+%------------------------------------------------
+\section{The probabilistic method} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
+%------------------------------------------------
+
+\subsection{Threshold functions} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
+
+\begin{frame}
+\frametitle{Erdös-Rényi model}
+\begin{definition}\label{def:probmet:ermodel}
+    The Erdös-Rényi model for random graphs $G(n, p)$ is a probability space over the set of graphs on $n$ labeled vertices determined by
+    \[\Pr[\{i, j\} \in G] = p\] 
+    with these events mutually independent.
+\end{definition}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+    Given a graph theoretic property $A$, there is a probability that $G(n, p)$ satisfies $A$, which we write as $\Pr[G(n, p) \vDash A]$. As $n$ grows, we let $p$ be a function of $n$, $p = p(n)$. \par
+\frametitle{Threshold functions}
+\begin{definition}\label{def:probmet:threshold}
+    $r(n)$ is a threshold function for a graph theoretic property $A$ if 
+    \begin{enumerate}
+        \item When \(p(n) \in o(r(n)), \; \lim_{n \to \infty} \Pr[G(n, p(n)) \vDash A] = 0,\)
+        \item When \(r(n) \in o(p(n)), \;  \lim_{n \to \infty} \Pr[G(n, p(n)) \vDash A] = 1,\) 
+    \end{enumerate}
+    or vice versa.
+\end{definition}
+\begin{example}
+    $\displaystyle{r(n) = \frac{\ln n}{n}}$ is a threshold for having isolated vertices. 
+\end{example}
+\end{frame}
+
+
+%------------------------------------------------
+
+\begin{frame}
+    \frametitle{Second moment method}
+    \begin{theorem}\label{thm:probmet:secondmoment:1}
+        \(\Pr[X = 0] \leq \frac{\Var[X]}{\EE[X]^2}.\)
+    \end{theorem}
+    \textbf{Proof.} Apply Chebyschev's inequality with $\lambda = \frac{\mu}{\sigma}$:
+    \[\Pr[X = 0] \leq \Pr[|X - \mu| \geq \lambda \sigma] \leq \frac{1}{\lambda^2} = \frac{\sigma^2}{\mu^2}. \qed \]
+    \begin{corollary}\label{cor:probmet:secondmoment:1}
+        If $\Var[X] \in o(\EE[X^2])$, $X > 0$ asymptotically almost always. 
+    \end{corollary}
+    
+\end{frame}
+
+
+\section{Numerical semigroups}
+%------------------------------------------------
+
+\begin{frame}
+    \frametitle{Numerical semigroups}
+    \begin{definition}\label{def:smgps}
+        A \textit{numerical semigroup} is a subset $S \subseteq \NN$ for which 
+        \begin{enumerate}
+            \item $0 \in S$,
+            \item $S$ is closed under addition, i.e. $a, b \in S$ implies $a + b \in S$, and
+            \item $S$ has finite complement in $\NN$.
+        \end{enumerate}
+    \end{definition}
+    \begin{example}
+        $\NN$ and $\NN\setminus \{1\}$. Subsets of $\NN$ which are not numerical semigroups include the set of even numbers, any finite set and $\NN_0 \setminus \{2\}$.
+    \end{example}
+    
+    \begin{example}\label{ex:smgps:mcnugget}
+        The \textit{McNugget Semigroup} is the set of all non-negative integers which can be expressed as a sum of non-negative multiples of 6, 9 and 20.
+    \end{example}
+    
+\end{frame}
+
+
+
+%------------------------------------------------
+\begin{frame}
+    \frametitle{The McNugget semigroup}
+    \begin{figure}
+        \centering
+        \input{figures/mcnugget.tikz}
+        \caption{Visualization of the McNugget semigroup.}
+        \label{fig:smgps:mcnugget}
+    \end{figure}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+    \frametitle{Generating sets}
+    The McNugget semigroup is an example of a numerical semigroup which is \textit{finitely generated}. This means that there exists a finite set $A = \{a_1, \ldots, a_n\}$ such that $S = \langle A \rangle$, where 
+    \[\langle A \rangle = \{c_1a_1 + \cdots + c_na_n : c_1, \ldots, c_n \in \NN\}.\]  
+    \begin{theorem}\label{thm:smgps:fin_gen}
+        All numerical semigroups are finitely generated.
+    \end{theorem}
+    \begin{theorem}\label{thm:smgps:gcd}
+        Let $A \subseteq \NN$ be a non-empty finite set. Then $\langle A \rangle$ is a numerical semigroup if and only if $\mathrm{gcd}(A) = 1$.    
+    \end{theorem}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Invariants}
+\begin{definition}\label{def:smgps:multiplicity}
+    The \textit{multiplicity} of $S$, denoted by $m(S)$, is the smallest non-zero element of $S$.
+\end{definition}
+\begin{theorem}\label{thm:smgps:minimal_generating_set}
+    There exists a unique minimal generating set $A$ with $S = \langle A \rangle$.
+\end{theorem}
+\begin{definition}\label{def:smgps:embedding_dim}
+    The \textit{embedding dimension} of $S$, denoted by $e(S)$, is the cardinality of the minimal generating set of $S$.
+\end{definition}
+
+\end{frame}   
+
+\begin{frame}
+\frametitle{Numerical semigroup invariants}
+Note that
+\[e(S) \leq m(S).\]
+\begin{definition}\label{def:smgps:aperyset}
+    The \textit{Ap\'ery set} of $n$ in $S$ is defined as
+    \[\mathrm{Ap}(S, n) = \{s \in S : s - n \notin S\}.\]
+\end{definition}
+
+\begin{definition}\label{def:smgps:frobeniusnum}
+    The \textit{Frobenius number} of $S$, denoted by $F(S)$, is the largest element of $(\NN \cup \{-1\}) \setminus S$.
+\end{definition}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Numerical semigroup invariants}
+    
+    Note that
+\begin{equation*}\label{eq:smgps:selmer1}
+    F(S) = \max (\mathrm{Ap}(S, n)) - n,
+\end{equation*}
+for any $n \in S$. Finding the Frobenius number of a numerical semigroup is \textbf{NP-hard}.
+    \begin{definition}\label{def:smgps:genus}
+        The \textit{genus} of $S$, denoted by $g(S)$, is the cardinality of $G(S)$.
+    \end{definition}
+    \begin{block}{Proposition}
+        \[g(S) \leq F(S) \leq 2g(S).\]
+    \end{block}
+\end{frame}
+
+%------------------------------------------------
+\section{Random numerical semigroups}
+%------------------------------------------------
+
+\begin{frame}
+    \frametitle{ER-type random numerical semigroups}
+    \begin{definition}\label{def:randnumsems:ermodel}
+        For $p \in (0, 1]$ and $M \in \NN$, an ER-type random numerical semigroup $\mathcal{S}(M, p)$ is obtained by using the following procedure:
+        \begin{enumerate}
+            \item Initialize an empty set $\mathcal{A}$.
+            \item As $i$ goes from $1$ to $M$, add $i$ to $\mathcal{A}$ with probability $p$, independently of the other steps.
+            \item Return the semigroup $\mathcal{S} = \langle\mathcal{A}\rangle$.
+        \end{enumerate}
+    \end{definition}
+    Note that this definition does not require a numerical semigroup $\mathcal{S}$ to be co-finite.
+\end{frame}
+
+\begin{frame}
+    \frametitle{A theorem of De Loera, O'Neill and Wilburne}
+    The main result of \cite{de2018random} is the following theorem.  
+    \fontsize{8pt}{7.2}\selectfont
+
+\begin{theorem}\label{thm:ermodel} Let $\mathcal{S} \sim \mathcal{S}(M, p)$, where $p = p(M)$ is a monotone decreasing function of $M$. Then, 
+    \begin{enumerate}
+        \item If $p(M) \in o\left(\frac{1}{M}\right)$, then $\mathcal{S} = \{0\}$ almost always.
+        \item If $\frac{1}{M} \in o(p(M))$ and $\lim_{M \to \infty} p(M)= 0$, then $\mathcal{S}$ is co-finite almost always and
+         \[\lim_{M \to  \infty} \EE[e(\mathcal{S})] = \lim_{M \to \infty} \EE[g(\mathcal{S})] = \lim_{M \to \infty} \EE[F(\mathcal{S})] = \infty.\]
+        \item If $\lim_{M \to \infty} p(M) > 0$, then
+        \[\lim_{M \to \infty} \EE[e(\mathcal{S})] < \infty,  \quad \lim_{M \to \infty} \EE[g(\mathcal{S})] < \infty \quad  \text{ and } \quad \lim_{M \to \infty} \EE[F(\mathcal{S})]< \infty,\]
+        and each limit is bounded by explicit rational functions in $p$.
+    \end{enumerate}
+\end{theorem}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Upper bounds}
+    They also provide explicit upper bounds when $p$ is constant.
+    \begin{theorem}
+        Let $\mathcal{S} \sim \mathcal{S}(M, p)$, where $p$ is a constant. Then, 
+        \begin{align*}
+            \frac{6 - 8p + 3p^2}{2 - 2p^2 + p^3} &\leq \lim_{M \to \infty} \EE[e(\mathcal{S})] \leq \frac{2 - p^2}{p}, \\
+            \frac{6 - 14p + 11p^2 - 3p^3}{2p - 2p^3 + p^4} &\leq \lim_{M \to \infty} \EE[g(\mathcal{S})] \leq \frac{(1 - p)(2 - p^2)}{p^2}, \text{ and}\\
+            \frac{6 - 14p + 11p^2 - 3p^3}{2p - 2p^3 + p^4} &\leq \lim_{M \to \infty} \EE[f(\mathcal{S})] \leq \frac{2(1 - p)(2 - p^2)}{p^2}.
+        \end{align*}
+    \end{theorem}
+\end{frame}
+    
+\section{Experiments}
+
+
+\begin{frame}
+\fontsize{10pt}{7.2}\selectfont
+\frametitle{Average embedding dimension}
+\begin{table}
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        $1/p$ & Lower Bound & $\overline{e(\mathcal{S})}$  & Upper bound \\
+        \hline
+        4.00 & 2.21 & 2.79 & 7.75 \\
+        75.14 & 2.95 & 9.05 & 150.27 \\
+        146.29 & 2.97 & 10.67 & 292.56 \\
+        217.43 & 2.98 & 12.28 & 434.85 \\
+        288.57 & 2.99 & 12.94 & 577.14 \\
+        359.71 & 2.99 & 13.65 & 719.43 \\
+        430.86 & 2.99 & 14.14 & 861.71 \\
+        502.00 & 2.99 & 14.73 & 1,004.00 \\
+        573.14 & 2.99 & 15.29 & 1,146.28 \\
+        644.29 & 2.99 & 16.17 & 1,288.57 \\
+        715.43 & 2.99 & 16.07 & 1,430.86 \\
+        786.57 & 2.99 & 16.34 & 1,573.14 \\
+        857.71 & 3.00 & 16.61 & 1,715.43 \\
+        928.86 & 3.00 & 17.39 & 1,857.71 \\
+        1,000.00 & 3.00 & 17.22 & 2,000.00 \\
+        \hline
+    \end{tabular}
+    \caption{Average embedding dimension of random numerical semigroups generated using the ER-type model (15 samples of 1000 random numerical semigroups).}
+    \label{tab:embedding}
+    \end{table}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Average embedding dimension plot}
+    \begin{figure}[h]
+        \begin{center}
+            \scalebox{0.6}{\input{figures/embedding_plot.pgf}}
+        \end{center}
+        \caption{Average embedding dimension of random numerical semigroups generated using the ER-type model.}
+        \label{fig:embedding}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \fontsize{10pt}{7.2}\selectfont
+    \frametitle{Average Frobenius number}
+    \begin{table}
+        \centering
+        \begin{tabular}{|c|c|c|c|}
+            \hline
+            $1/p$ & Lower Bound & $\overline{F(\mathcal{S})}$ & Upper bound \\
+            \hline
+            4.00 & 7.26 & 13.96 & 46.50 \\
+            75.14 & 218.56 & 1,088.82 & 22,283.25 \\
+            146.29 & 431.93 & 2,483.26 & 85,010.91 \\
+            217.43 & 645.33 & 4,174.94 & 188,229.03 \\
+            288.57 & 858.75 & 5,859.29 & 331,937.60 \\
+            359.71 & 1,072.17 & 7,794.18 & 516,136.62 \\
+            430.86 & 1,285.59 & 9,594.56 & 740,826.09 \\
+            502.00 & 1,499.02 & 11,533.38 & 1,006,006.00 \\
+            573.14 & 1,712.45 & 13,765.73 & 1,311,676.37 \\
+            644.29 & 1,925.87 & 16,239.19 & 1,657,837.19 \\
+            715.43 & 2,139.30 & 17,769.34 & 2,044,488.45 \\
+            786.57 & 2,352.73 & 19,806.19 & 2,471,630.17 \\
+            857.71 & 2,566.15 & 22,157.78 & 2,939,262.33 \\
+            928.86 & 2,779.58 & 25,079.10 & 3,447,384.94 \\
+            1,000.00 & 2,993.01 & 26,637.46 & 3,995,998.00 \\
+            \hline
+        \end{tabular}
+        \caption{Average Frobenius number of random numerical semigroups generated using the ER-type model (15 samples of 1000 random numerical semigroups).}
+        \label{tab:frobenius}
+        \end{table}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Average Frobenius number plot}
+        \begin{figure}
+            \begin{center}
+                \scalebox{0.6}{\input{figures/frobenius_plot.pgf}}
+            \end{center}
+            \caption{Average Frobenius number of random numerical semigroups generated using the ER-type model vs $4(1/p)\log(1/p)$}
+            \label{fig:frobenius}
+        \end{figure}
+    \end{frame}
+    
+    \begin{frame}
+        \frametitle{Numerical semigroup visualization}
+        \begin{figure}
+            \begin{center}
+                \scalebox{0.8}{\input{figures/first_er.pgf}}
+            \end{center}
+            \caption{ER-type random numerical semigroup, $1/p = 10$.}
+        \end{figure}
+    
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Numerical semigroup visualization}
+        \begin{figure}
+            \begin{center}
+                \scalebox{0.8}{\input{figures/ertype_visual_100000_0.01.pgf}}
+            \end{center}
+            \caption{ER-type random numerical semigroup, $1/p = 100$.}
+        \end{figure}
+    
+    \end{frame}
+
+\section{Results}
+
+\begin{frame}
+    \frametitle{Main result}
+    \fontsize{8pt}{7.2}\selectfont
+    \begin{theorem}\label{thm:main}
+        Let $\mathcal{S} \sim \mathcal{S}(M, p)$, where $p = p(M)$ is a monotone decreasing function of $M$ and $\frac{1}{M} \in o(p(M))$. Then, 
+    \begin{enumerate}
+        \item If $\lim_{M \to \infty} p(M) = 0$, then for every $K \in \N$,   
+        \[\lim_{M \to \infty} \Pr[e(\mathcal{S}) > K] = \lim_{M \to \infty} \Pr[g(\mathcal{S}) > K] = \lim_{M \to \infty} \Pr[F(\mathcal{S}) > K] = 1.\]
+        \item If $\lim_{M \to \infty} p(M) > 0$, then $e(\mathcal{S}), \; g(\mathcal{S})$ and $F(\mathcal{S})$ are bounded in probability, i.e., for every $\varepsilon > 0$, there exists $K_\varepsilon$ such that 
+        \[ \Pr[e(\mathcal{S}) < K_\varepsilon] > 1 - \varepsilon, \quad  \Pr[g(\mathcal{S}) < K_\varepsilon] > 1- \varepsilon \quad \text{and} \quad \Pr[F(\mathcal{S}) < K_\varepsilon] > 1 - \varepsilon.\]
+    \end{enumerate}
+    Furthermore, for every $\varphi, \psi$ such that $(\log x)^2 \in o(\varphi(x))$, $x(\log x)^2 \in o(\psi(x))$,
+    \[\lim_{p \to 0} \Pr\left[e(\mathcal{S}) < \varphi\left(\frac{1}{p}\right)\right] = \lim_{p \to 0} \Pr\left[g(\mathcal{S}) < \psi\left(\frac{1}{p}\right)\right]  = \lim_{p \to 0} \Pr\left[F(\mathcal{S}) < \psi\left(\frac{1}{p}\right)\right] = 1.\]
+    \end{theorem}
+\end{frame}
+
+%------------------------------------------------
+\subsection{Lower bound}
+
+\begin{frame}
+\frametitle{Lower bound}
+\begin{theorem}
+    Let $\mathcal{S} \sim \mathcal{S}(M, p)$, where $p = p(M)$ is a monotone decreasing function of $M$ and $\frac{1}{M} \in o(p(M))$.
+    If $\lim_{M \to \infty} p(M) = 0$, then for every $K \in \N$,   
+    \[\lim_{M \to \infty} \Pr[e(\mathcal{S}) > K] = \lim_{M \to \infty} \Pr[g(\mathcal{S}) > K] = \lim_{M \to \infty} \Pr[F(\mathcal{S}) > K] = 1.\]
+\end{theorem}
+To prove this theorem, we show that, for each fixed number of generators $a$, there is a high probability that at least $a$ minimal generators are chosen as $p \to 0$.
+\end{frame}
+
+%------------------------------------------------
+
+%------------------------------------------------
+
+\subsection{Upper bound}
+
+\begin{frame}
+\frametitle{Sums of random subsets of cyclic groups}
+Before proving the upper bound, we use the second moment method to prove a lemma that shows that a cyclic group of prime order is covered by the sums of a random subset of logarithmic size almost always. 
+\begin{block}{Lemma}
+    Let $q$ be a prime number and $\mathcal{A}$ be a random subset of $\mathbb{Z}_q$ of size $4\lfloor3\log_2 q\rfloor$. As $q$ tends to infinity, $2\lfloor3\log_2 q\rfloor \mathcal{A}$ covers $\mathbb{Z}_q$ almost always. 
+\end{block}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+    \frametitle{Upper bound}
+    \begin{block}{Lemma}
+        Let $\psi(x)$ be a function for which $x(\log x)^2 \in o(\psi(x))$ .Then
+        \[\lim_{p \to 0}\Pr\left[F(\mathcal{S}) \leq \psi\left(\frac{1}{p}\right)\right] = 1.\] 
+    \end{block}
+    This result implies the bound for the other invariants.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Upper bound proof strategy}
+    The proof of this lemma consists of several parts. The strategy is to prove that the Ápery set of a subsemigroup of $S$ is completed before step $\psi\left(\frac{1}{p}\right)$ with high probability, since $F(\mathcal{S})$ is less than the maximum element of this Ápery set. The proof has the following structure: 
+\begin{enumerate}
+\item First, using the prime number theorem, we find a step for which a prime $q$ is chosen with high probability ($E_1$). 
+\item Then, in the spirit of cyclic group lemma we find a step such that a set $\mathcal{A}$ of $s$ elements which are different modulo $q$ are chosen with high probability ($E_2$). 
+\item Finally, we apply the cyclic group lemma to $\mathrm{Ap}(\langle \mathcal{A} \cup \{q\}\rangle, q)$.
+\end{enumerate}
+    
+\end{frame}
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Selected References}
+\begin{itemize}
+    \item \footnotesize{[1]
+        \fullcite{de2018random}
+        }
+    \item \footnotesize{[2]
+        \fullcite{alon2016probabilistic}
+    }
+    
+\end{itemize}
+
+\end{frame}
+
+%--------------------------------------------
+
+%----------------------------------------------------------------------------------------
+
+\end{document}
