@@ -187,6 +187,7 @@ Universidad de los Andes\\ % Your institution for the title page
 
 \begin{frame}
     \frametitle{Second moment method}
+    Let $X \geq 0$ be a random variable with finite variance. 
     \begin{theorem}\label{thm:probmet:secondmoment:1}
         \(\Pr[X = 0] \leq \frac{\Var[X]}{\EE[X]^2}.\)
     \end{theorem}
@@ -223,18 +224,6 @@ Universidad de los Andes\\ % Your institution for the title page
 \end{frame}
 
 
-
-%------------------------------------------------
-\begin{frame}
-    \frametitle{The McNugget semigroup}
-    \begin{figure}
-        \centering
-        \input{figures/mcnugget.tikz}
-        \caption{Visualization of the McNugget semigroup.}
-        \label{fig:smgps:mcnugget}
-    \end{figure}
-\end{frame}
-
 %------------------------------------------------
 \begin{frame}
     \frametitle{Generating sets}
@@ -246,6 +235,16 @@ Universidad de los Andes\\ % Your institution for the title page
     \begin{theorem}\label{thm:smgps:gcd}
         Let $A \subseteq \NN$ be a non-empty finite set. Then $\langle A \rangle$ is a numerical semigroup if and only if $\mathrm{gcd}(A) = 1$.    
     \end{theorem}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+    \frametitle{The McNugget semigroup}
+    \begin{figure}
+        \centering
+        \input{figures/mcnugget.tikz}
+        \caption{Visualization of the McNugget semigroup.}
+    \end{figure}
 \end{frame}
 
 %------------------------------------------------
@@ -268,21 +267,31 @@ Universidad de los Andes\\ % Your institution for the title page
 Note that
 \[e(S) \leq m(S).\]
 \begin{definition}\label{def:smgps:aperyset}
-    The \textit{Ap\'ery set} of $n$ in $S$ is defined as
-    \[\mathrm{Ap}(S, n) = \{s \in S : s - n \notin S\}.\]
+    The \textit{Ap\'ery set} is defined as
+    \[\mathrm{Ap}(S) = \{s \in S : s - m(S) \notin S\}.\]
 \end{definition}
 
 \begin{definition}\label{def:smgps:frobeniusnum}
-    The \textit{Frobenius number} of $S$, denoted by $F(S)$, is the largest element of $(\NN \cup \{-1\}) \setminus S$.
+    The \textit{Frobenius number} of $S$, denoted by $F(S)$, is the largest element of the complement of $S$ in $\NN$.
 \end{definition}
 \end{frame}
+
+\begin{frame}
+    \frametitle{The McNugget semigroup}
+    \begin{figure}
+        \centering
+        \input{figures/mcnugget.tikz}
+        \caption{Visualization of the McNugget semigroup.}
+    \end{figure}
+\end{frame}
+
 
 \begin{frame}
     \frametitle{Numerical semigroup invariants}
     
     Note that
 \begin{equation*}\label{eq:smgps:selmer1}
-    F(S) = \max (\mathrm{Ap}(S, n)) - n,
+    F(S) = \max (\mathrm{Ap}(S)) - m(S),
 \end{equation*}
 for any $n \in S$. Finding the Frobenius number of a numerical semigroup is \textbf{NP-hard}.
     \begin{definition}\label{def:smgps:genus}
@@ -312,8 +321,8 @@ for any $n \in S$. Finding the Frobenius number of a numerical semigroup is \tex
 
 \begin{frame}
     \frametitle{A theorem of De Loera, O'Neill and Wilburne}
-    The main result of \cite{de2018random} is the following theorem.  
-    \fontsize{8pt}{7.2}\selectfont
+
+    \fontsize{10pt}{7.2}\selectfont
 
 \begin{theorem}\label{thm:ermodel} Let $\mathcal{S} \sim \mathcal{S}(M, p)$, where $p = p(M)$ is a monotone decreasing function of $M$. Then, 
     \begin{enumerate}
@@ -380,7 +389,7 @@ for any $n \in S$. Finding the Frobenius number of a numerical semigroup is \tex
         \begin{center}
             \scalebox{0.6}{\input{figures/embedding_plot.pgf}}
         \end{center}
-        \caption{Average embedding dimension of random numerical semigroups generated using the ER-type model.}
+        \caption{Average embedding dimension of random numerical semigroups generated using the ER-type model vs $\log(1/p)$.}
         \label{fig:embedding}
     \end{figure}
 \end{frame}
@@ -423,32 +432,11 @@ for any $n \in S$. Finding the Frobenius number of a numerical semigroup is \tex
             \begin{center}
                 \scalebox{0.6}{\input{figures/frobenius_plot.pgf}}
             \end{center}
-            \caption{Average Frobenius number of random numerical semigroups generated using the ER-type model vs $4(1/p)\log(1/p)$}
+            \caption{Average Frobenius number of random numerical semigroups generated using the ER-type model vs $(1/p)\log(1/p)$.}
             \label{fig:frobenius}
         \end{figure}
     \end{frame}
-    
-    \begin{frame}
-        \frametitle{Numerical semigroup visualization}
-        \begin{figure}
-            \begin{center}
-                \scalebox{0.8}{\input{figures/first_er.pgf}}
-            \end{center}
-            \caption{ER-type random numerical semigroup, $1/p = 10$.}
-        \end{figure}
-    
-    \end{frame}
 
-    \begin{frame}
-        \frametitle{Numerical semigroup visualization}
-        \begin{figure}
-            \begin{center}
-                \scalebox{0.8}{\input{figures/ertype_visual_100000_0.01.pgf}}
-            \end{center}
-            \caption{ER-type random numerical semigroup, $1/p = 100$.}
-        \end{figure}
-    
-    \end{frame}
 
 \section{Results}
 
@@ -493,6 +481,14 @@ Before proving the upper bound, we use the second moment method to prove a lemma
 \begin{block}{Lemma}
     Let $q$ be a prime number and $\mathcal{A}$ be a random subset of $\mathbb{Z}_q$ of size $4\lfloor3\log_2 q\rfloor$. As $q$ tends to infinity, $2\lfloor3\log_2 q\rfloor \mathcal{A}$ covers $\mathbb{Z}_q$ almost always. 
 \end{block}
+\begin{example}
+    Let \(q = 17\).
+    \begin{itemize}
+        \item\(\mathcal{A} = \{0, 3, 5, 11\},\)
+        \item \(2\mathcal{A} = \{0, 3, 5, 6, 8, 10, 11, 14, 16\},\)
+        \item \(4\mathcal{A} = \ZZ_q.\)
+    \end{itemize}
+\end{example}
 \end{frame}
 
 %------------------------------------------------
@@ -511,21 +507,56 @@ Before proving the upper bound, we use the second moment method to prove a lemma
     The proof of this lemma consists of several parts. The strategy is to prove that the Ápery set of a subsemigroup of $S$ is completed before step $\psi\left(\frac{1}{p}\right)$ with high probability, since $F(\mathcal{S})$ is less than the maximum element of this Ápery set. The proof has the following structure: 
 \begin{enumerate}
 \item First, using the prime number theorem, we find a step for which a prime $q$ is chosen with high probability ($E_1$). 
-\item Then, in the spirit of cyclic group lemma we find a step such that a set $\mathcal{A}$ of $s$ elements which are different modulo $q$ are chosen with high probability ($E_2$). 
-\item Finally, we apply the cyclic group lemma to $\mathrm{Ap}(\langle \mathcal{A} \cup \{q\}\rangle, q)$.
+\item Then, in the spirit of cyclic group lemma we find a step such that a set $\mathcal{A}$ of $\log q$ elements which are different modulo $q$ are chosen with high probability ($E_2$). 
+\item Finally, we apply the cyclic group lemma to $\mathrm{Ap}(\langle \mathcal{A} \cup \{q\}\rangle)$.
 \end{enumerate}
     
 \end{frame}
 %------------------------------------------------
+\begin{frame}
+    \frametitle{Numerical semigroup visualization}
+    \begin{figure}
+        \begin{center}
+            \scalebox{0.8}{\input{figures/first_er.pgf}}
+        \end{center}
+        \caption{ER-type random numerical semigroup, $1/p = 10$.}
+    \end{figure}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Numerical semigroup visualization}
+    \begin{figure}
+        \begin{center}
+            \scalebox{0.8}{\input{figures/ertype_visual_100000_0.01.pgf}}
+        \end{center}
+        \caption{ER-type random numerical semigroup, $1/p = 100$.}
+    \end{figure}
+
+\end{frame}
+
+
 
 \begin{frame}
 \frametitle{Selected References}
 \begin{itemize}
-    \item \footnotesize{[1]
+    \item \footnotesize{
         \fullcite{de2018random}
         }
-    \item \footnotesize{[2]
+    
+    \item \footnotesize{
+        \fullcite{ramirez1996complexity}
+    }
+    \item \footnotesize {
+        \fullcite{arnold1999weak}
+    }
+
+    \item \footnotesize{
         \fullcite{alon2016probabilistic}
+    }
+
+    \item \footnotesize{
+        \fullcite{assi2020numerical}
     }
     
 \end{itemize}
