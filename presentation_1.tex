@@ -178,7 +178,7 @@ Universidad de los Andes\\ % Your institution for the title page
     or vice versa.
 \end{definition}
 \begin{example}
-    $\displaystyle{r(n) = \frac{\ln n}{n}}$ is a threshold for having isolated vertices. 
+    $\displaystyle{r(n) = \frac{\ln n}{n}}$ is a threshold for having no isolated vertices. 
 \end{example}
 \end{frame}
 
@@ -194,7 +194,7 @@ Universidad de los Andes\\ % Your institution for the title page
     \textbf{Proof.} Apply Chebyschev's inequality with $\lambda = \frac{\mu}{\sigma}$:
     \[\Pr[X = 0] \leq \Pr[|X - \mu| \geq \lambda \sigma] \leq \frac{1}{\lambda^2} = \frac{\sigma^2}{\mu^2}. \qed \]
     \begin{corollary}\label{cor:probmet:secondmoment:1}
-        If $\Var[X] \in o(\EE[X^2])$, $X > 0$ asymptotically almost always. 
+        If $\Var[X] \in o(\EE[X]^2)$, $X > 0$ asymptotically almost always. 
     \end{corollary}
     
 \end{frame}
@@ -295,7 +295,7 @@ Note that
 \end{equation*}
 for any $n \in S$. Finding the Frobenius number of a numerical semigroup is \textbf{NP-hard}.
     \begin{definition}\label{def:smgps:genus}
-        The \textit{genus} of $S$, denoted by $g(S)$, is the cardinality of $G(S)$.
+        The \textit{genus} of $S$, denoted by $g(S)$, is the cardinality $\NN \setminus S$.
     \end{definition}
     \begin{block}{Proposition}
         \[g(S) \leq F(S) \leq 2g(S).\]
@@ -342,9 +342,9 @@ for any $n \in S$. Finding the Frobenius number of a numerical semigroup is \tex
     \begin{theorem}
         Let $\mathcal{S} \sim \mathcal{S}(M, p)$, where $p$ is a constant. Then, 
         \begin{align*}
-            \frac{6 - 8p + 3p^2}{2 - 2p^2 + p^3} &\leq \lim_{M \to \infty} \EE[e(\mathcal{S})] \leq \frac{2 - p^2}{p}, \\
-            \frac{6 - 14p + 11p^2 - 3p^3}{2p - 2p^3 + p^4} &\leq \lim_{M \to \infty} \EE[g(\mathcal{S})] \leq \frac{(1 - p)(2 - p^2)}{p^2}, \text{ and}\\
-            \frac{6 - 14p + 11p^2 - 3p^3}{2p - 2p^3 + p^4} &\leq \lim_{M \to \infty} \EE[f(\mathcal{S})] \leq \frac{2(1 - p)(2 - p^2)}{p^2}.
+            \Theta(1) &\leq \lim_{M \to \infty} \EE[e(\mathcal{S})] \leq \Theta\left(\frac{1}{p}\right), \\
+            \Theta\left(\frac{1}{p}\right) &\leq \lim_{M \to \infty} \EE[g(\mathcal{S})] \leq \Theta\left(\frac{1}{p^2}\right),\\
+            \Theta\left(\frac{1}{p}\right) &\leq \lim_{M \to \infty} \EE[F(\mathcal{S})] \leq \Theta\left(\frac{1}{p^2}\right).
         \end{align*}
     \end{theorem}
 \end{frame}
@@ -437,6 +437,19 @@ for any $n \in S$. Finding the Frobenius number of a numerical semigroup is \tex
         \end{figure}
     \end{frame}
 
+    \begin{frame}
+        \frametitle{A conjecture}
+        \begin{block}{Conjecture}
+            \begin{itemize}
+                \item \(\lim_{M \to \infty} \EE[e(\mathcal{S}(M, p))] \in \Theta \left(\log\frac{1}{p}\right)\) and
+                \item \(\lim_{M \to \infty} \EE[F(\mathcal{S}(M, p))] \in \Theta \left(\frac{1}{p}\log\frac{1}{p}\right).\)
+            \end{itemize}
+            
+            
+        \end{block}
+        
+    \end{frame}
+
 
 \section{Results}
 
@@ -461,11 +474,11 @@ for any $n \in S$. Finding the Frobenius number of a numerical semigroup is \tex
 
 \begin{frame}
 \frametitle{Lower bound}
-\begin{theorem}
+\begin{block}{Lower bound}
     Let $\mathcal{S} \sim \mathcal{S}(M, p)$, where $p = p(M)$ is a monotone decreasing function of $M$ and $\frac{1}{M} \in o(p(M))$.
     If $\lim_{M \to \infty} p(M) = 0$, then for every $K \in \N$,   
     \[\lim_{M \to \infty} \Pr[e(\mathcal{S}) > K] = \lim_{M \to \infty} \Pr[g(\mathcal{S}) > K] = \lim_{M \to \infty} \Pr[F(\mathcal{S}) > K] = 1.\]
-\end{theorem}
+\end{block}
 To prove this theorem, we show that, for each fixed number of generators $a$, there is a high probability that at least $a$ minimal generators are chosen as $p \to 0$.
 \end{frame}
 
@@ -477,7 +490,6 @@ To prove this theorem, we show that, for each fixed number of generators $a$, th
 
 \begin{frame}
 \frametitle{Sums of random subsets of cyclic groups}
-Before proving the upper bound, we use the second moment method to prove a lemma that shows that a cyclic group of prime order is covered by the sums of a random subset of logarithmic size almost always. 
 \begin{block}{Lemma}
     Let $q$ be a prime number and $\mathcal{A}$ be a random subset of $\mathbb{Z}_q$ of size $4\lfloor3\log_2 q\rfloor$. As $q$ tends to infinity, $2\lfloor3\log_2 q\rfloor \mathcal{A}$ covers $\mathbb{Z}_q$ almost always. 
 \end{block}
@@ -495,20 +507,19 @@ Before proving the upper bound, we use the second moment method to prove a lemma
 
 \begin{frame}
     \frametitle{Upper bound}
-    \begin{block}{Lemma}
+    \begin{block}{Upper bound}
         Let $\psi(x)$ be a function for which $x(\log x)^2 \in o(\psi(x))$ .Then
         \[\lim_{p \to 0}\Pr\left[F(\mathcal{S}) \leq \psi\left(\frac{1}{p}\right)\right] = 1.\] 
     \end{block}
-    This result implies the bound for the other invariants.
 \end{frame}
 
 \begin{frame}
     \frametitle{Upper bound proof strategy}
-    The proof of this lemma consists of several parts. The strategy is to prove that the Ápery set of a subsemigroup of $S$ is completed before step $\psi\left(\frac{1}{p}\right)$ with high probability, since $F(\mathcal{S})$ is less than the maximum element of this Ápery set. The proof has the following structure: 
+    The strategy is to prove that the Ápery set of a subsemigroup of $S$ is completed before step $\psi\left(\frac{1}{p}\right)$ with high probability, since $F(\mathcal{S})$ is less than the maximum element of this Ápery set. The proof has the following structure: 
 \begin{enumerate}
-\item First, using the prime number theorem, we find a step for which a prime $q$ is chosen with high probability ($E_1$). 
-\item Then, in the spirit of cyclic group lemma we find a step such that a set $\mathcal{A}$ of $\log q$ elements which are different modulo $q$ are chosen with high probability ($E_2$). 
-\item Finally, we apply the cyclic group lemma to $\mathrm{Ap}(\langle \mathcal{A} \cup \{q\}\rangle)$.
+\item Using the prime number theorem, we find a step for which a prime $q$ is chosen with high probability. 
+\item In the spirit of the cyclic group lemma we find a step such that a set $\mathcal{A}$ of $\log q$ elements which are different modulo $q$ are chosen with high probability. 
+\item We apply the cyclic group lemma to $\mathrm{Ap}(\langle \mathcal{A} \cup \{q\}\rangle)$.
 \end{enumerate}
     
 \end{frame}
