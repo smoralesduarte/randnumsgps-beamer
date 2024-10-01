@@ -123,14 +123,14 @@
 %	TITLE PAGE
 %----------------------------------------------------------------------------------------
 
-\title[Random numerical semigroups]{Random numerical semigroups and sums of subsets of cyclic groups} % The short title appears at the bottom of every slide, the full title is only on the title page
+\title[Random numerical semigroups]{Improved upper bounds on key invariants of Erdös-Rényi numerical semigroups} % The short title appears at the bottom of every slide, the full title is only on the title page
 
-\author{Santiago Morales Duarte} % Your name
-\institute[Uniandes] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
+\author{Santiago Morales} % Your name
+\institute[UC Davis] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
 {
-Universidad de los Andes\\ % Your institution for the title page
+University of California, Davis\\ % Your institution for the title page
 \medskip
-\textit{s.morales30@uniandes.edu.co} % Your email address
+\textit{moralesduarte@ucdavis.edu} % Your email address
 }
 \date{\today} % Date, can be changed to a custom date
 
@@ -454,44 +454,50 @@ for any $n \in S$. Finding the Frobenius number of a numerical semigroup is \tex
 \section{Results}
 
 \begin{frame}
+    \frametitle{A new definition}
+    \begin{definition}\label{def:randnumsems:def}
+        For $p \in (0, 1]$, an \textit{unconstrained ER-type random numerical semigroup} $S(p)$ is a probability sapce over the set of semigroups $S = \langle \mathcal{A} \rangle$ with $\mathcal{A} \subseteq \NN$ determined by $\Pr[n \in \mathcal{A}] = p$ for each $n \in \NN$ with these events mutually independent.
+    \end{definition}
+\end{frame}
+
+\begin{frame}
     \frametitle{Main result}
-    \fontsize{8pt}{7.2}\selectfont
     \begin{theorem}\label{thm:main}
-        Let $\mathcal{S} \sim \mathcal{S}(M, p)$, where $p = p(M)$ is a monotone decreasing function of $M$ and $\frac{1}{M} \in o(p(M))$. Then, 
-    \begin{enumerate}
-        \item If $\lim_{M \to \infty} p(M) = 0$, then for every $K \in \N$,   
-        \[\lim_{M \to \infty} \Pr[e(\mathcal{S}) > K] = \lim_{M \to \infty} \Pr[g(\mathcal{S}) > K] = \lim_{M \to \infty} \Pr[F(\mathcal{S}) > K] = 1.\]
-        \item If $\lim_{M \to \infty} p(M) > 0$, then $e(\mathcal{S}), \; g(\mathcal{S})$ and $F(\mathcal{S})$ are bounded in probability, i.e., for every $\varepsilon > 0$, there exists $K_\varepsilon$ such that 
-        \[ \Pr[e(\mathcal{S}) < K_\varepsilon] > 1 - \varepsilon, \quad  \Pr[g(\mathcal{S}) < K_\varepsilon] > 1- \varepsilon \quad \text{and} \quad \Pr[F(\mathcal{S}) < K_\varepsilon] > 1 - \varepsilon.\]
-    \end{enumerate}
-    Furthermore, for every $\varphi, \psi$ such that $(\log x)^2 \in o(\varphi(x))$, $x(\log x)^2 \in o(\psi(x))$,
-    \[\lim_{p \to 0} \Pr\left[e(\mathcal{S}) < \varphi\left(\frac{1}{p}\right)\right] = \lim_{p \to 0} \Pr\left[g(\mathcal{S}) < \psi\left(\frac{1}{p}\right)\right]  = \lim_{p \to 0} \Pr\left[F(\mathcal{S}) < \psi\left(\frac{1}{p}\right)\right] = 1.\]
+        Let $S \sim S(p)$ for any $p < 24e^{-8}$. Then,
+        \[\EE[e(S)] \leq 5000 \left(\ln\left(\frac{24}{p}\right)\right)^3 \text{ and }\]
+        \[\EE[g(S)] \leq \EE[f(S)] \leq \frac{5000}{p} \left(\ln\left(\frac{24}{p}\right)\right)^3.\]
     \end{theorem}
+    For both Frobenius number and genus, we reduce the ratio between the lower and upper bounds from order $1/p$ to order $(\ln(1/p))^3$ at the cost of large constant factors and an assumption that $p$ is sufficiently small. 
+\end{frame}
+
+\begin{frame}
+    \frametitle{Proof strategy}
+    Our proofs are purely probablilistic. We separate two processes:
+    \begin{enumerate}
+        \item Random selection of generators.
+        \item Creation of new elements via addition.
+    \end{enumerate}
+    First, we show that with high probability, both a prime $q$ and a set $\mathcal{A}$ of roughly $\log q$ elements are chosen. The set $\mathcal{A}$ can be interpreted as a random subset of $\ZZ_q$, and we prove a result about $k-$fold sums of such sets. We use that to show that the Frobenius number is bounded by a function of $q$ and $\log q$.
 \end{frame}
 
 %------------------------------------------------
-\subsection{Lower bound}
+
+\subsection{Sumsets of random subsets of $\ZZ_q$}
 
 \begin{frame}
-\frametitle{Lower bound}
-\begin{block}{Lower bound}
-    Let $\mathcal{S} \sim \mathcal{S}(M, p)$, where $p = p(M)$ is a monotone decreasing function of $M$ and $\frac{1}{M} \in o(p(M))$.
-    If $\lim_{M \to \infty} p(M) = 0$, then for every $K \in \N$,   
-    \[\lim_{M \to \infty} \Pr[e(\mathcal{S}) > K] = \lim_{M \to \infty} \Pr[g(\mathcal{S}) > K] = \lim_{M \to \infty} \Pr[F(\mathcal{S}) > K] = 1.\]
-\end{block}
-To prove this theorem, we show that, for each fixed number of generators $a$, there is a high probability that at least $a$ minimal generators are chosen as $p \to 0$.
+    \frametitle{Sumsets}
+    \begin{block}{Definition}
+        Let $\mathcal{A}$ be a subset of an abelian group $G$. The $k-$fold sumset of $\mathcal{A}$ is defined as
+        \[k\mathcal{A} = \{a_1 + \cdots + a_k : a_1, \ldots, a_k \in \mathcal{A}\}.\]
+    \end{block}
+    Sumsets are a central object of study in additive number theory. However, there are fewer results about sumsets of random sets. We prove the following theorem which shows that if a random subset of $\mathcal{A} \subset \ZZ_q$ whose size as well as $k$ are a multiple of $\log q$, then with high probability, $k\mathcal{A} = \ZZ_q$. 
 \end{frame}
 
-%------------------------------------------------
-
-%------------------------------------------------
-
-\subsection{Upper bound}
-
 \begin{frame}
-\frametitle{Sums of random subsets of cyclic groups}
-\begin{block}{Lemma}
-    Let $q$ be a prime number and $\mathcal{A}$ be a random subset of $\mathbb{Z}_q$ of size $4\lfloor3\log_2 q\rfloor$. As $q$ tends to infinity, $2\lfloor3\log_2 q\rfloor \mathcal{A}$ covers $\mathbb{Z}_q$ almost always. 
+\frametitle{Random sumset theorem}
+\begin{block}{Theorem}
+    Let $q$ be a prime number and $\mathcal{A}$ be a random subset of $\mathbb{Z}_q$ of size $2b\log_2 q$. Then
+    \[\Pr\left[(b\log_2q)\mathcal{A} \neq \mathbb{Z}_q\right] \leq \frac{2b\log_2 q + 2}{q^{b - 2}}.\]
 \end{block}
 \begin{example}
     Let \(q = 17\).
@@ -503,29 +509,40 @@ To prove this theorem, we show that, for each fixed number of generators $a$, th
 \end{example}
 \end{frame}
 
+
+\begin{frame}
+    \frametitle{Proof}
+    \begin{enumerate}
+        \item We use the second moment method to show that with high probability, the $k-$fold sumset of $\mathcal{A}$ covers $º\ZZ_q$.
+        \item Our proof uses combinatorial bounds on binomial coefficients in order that the inequalities hold for all $q$. Assymptoically, as $q$ tends to infinity one could instead use Stirling's formula to obtain the improved bound
+        \[\Pr\left[(b\log_2q)\mathcal{A} \neq \mathbb{Z}_q\right] \in O\left(\frac{\log q}{q^{b - 2}}\right).\]
+        \item Our proof actually bounds the probability that not every element of $\ZZ_q$ is a sum of $b\log_2 q$ \textit{distinct} elements of $\mathcal{A}$, so it yields a stronger statement. 
+    \end{enumerate}
+    \end{frame}
 %------------------------------------------------
 
 \begin{frame}
-    \frametitle{Upper bound}
-    \begin{block}{Upper bound}
-        Let $\psi(x)$ be a function for which $x(\log x)^2 \in o(\psi(x))$ .Then
-        \[\lim_{p \to 0}\Pr\left[F(\mathcal{S}) \leq \psi\left(\frac{1}{p}\right)\right] = 1.\] 
-    \end{block}
+    \frametitle{Upper bound proof strategy}
+    The strategy is to prove that the Ápery set of a subsemigroup of $S$ is completed before a certain step with high probability, since $F(\mathcal{S})$ is less than the maximum element of this Ápery set. The proof has the following structure: \par
+    Let
+    \[f(p) = \frac{d}{p}\left(\ln\left(\frac{d}{p}\right)\right)^2.\]
+
+    
 \end{frame}
 
 \begin{frame}
     \frametitle{Upper bound proof strategy}
-    The strategy is to prove that the Ápery set of a subsemigroup of $S$ is completed before step $\psi\left(\frac{1}{p}\right)$ with high probability, since $F(\mathcal{S})$ is less than the maximum element of this Ápery set. The proof has the following structure: 
-\begin{enumerate}
-\item Using the prime number theorem, we find a step for which a prime $q$ is chosen with high probability. 
-\item In the spirit of the cyclic group lemma we find a step such that a set $\mathcal{A}$ of $\log q$ elements which are different modulo $q$ are chosen with high probability. 
-\item We apply the cyclic group lemma to $\mathrm{Ap}(\langle \mathcal{A} \cup \{q\}\rangle)$.
-\end{enumerate}
-    
+    \begin{enumerate}
+        \item Define $D_1$ to be the event that at least one prime number between $f(p) + 1$ and $cf(p)$ is selected as a generator of $\mathcal{S}$
+        \item Assuming $D_1$, let $q$ be the largest prime selected in that range. Define $D_2$ to be the event that at least $2b\log_2 q$ are selected between 1 and $q - 1$.
+        \item Assuming $D_1$ and $D_2$, let $\mathcal{S}'$ be the subsemigroup of $\mathcal{S}$ generated by a random subset of $2b\log_2 q$ elements between 1 and $q$ along with $q$ itself. Let $D_3$ be the event that the largest element of the Ápery set of $\mathcal{S}'$ with respect to $q$ is at most $bq\log_2q$.
+    \end{enumerate}
+    If all of these events occur, then we can bound the frobenius number by 
+    \[F[\mathcal{S}]\leq F[\mathcal{S}'] \leq bq\log_2 q \leq bcf(p)\log_2(cf(p)).\]
 \end{frame}
 %------------------------------------------------
 \begin{frame}
-    \frametitle{Numerical semigroup visualization}
+    \frametitle{Some visualizations}
     \begin{figure}
         \begin{center}
             \scalebox{0.8}{\input{figures/first_er.pgf}}
@@ -536,7 +553,7 @@ To prove this theorem, we show that, for each fixed number of generators $a$, th
 \end{frame}
 
 \begin{frame}
-    \frametitle{Numerical semigroup visualization}
+    \frametitle{Some visualizations}
     \begin{figure}
         \begin{center}
             \scalebox{0.8}{\input{figures/ertype_visual_100000_0.01.pgf}}
@@ -544,6 +561,12 @@ To prove this theorem, we show that, for each fixed number of generators $a$, th
         \caption{ER-type random numerical semigroup, $1/p = 100$.}
     \end{figure}
 
+\end{frame}
+
+\begin{frame}
+    \frametitle{Summary}
+    We use a range of probabilistic methods to improve the upper bounds to within a polylogarithmic factor of the lower bounds. As one of the tools to do this, we prove that for any prime $q$, if $\mathcal{A}$ is a random subset of $\ZZ_q$, whose size is of the order of $\log q$ and $k$ is also of order $\log q$, then with high probability, $k\mathcal{A} = \ZZ_q$. \par
+    One strategy to prove the conjecture would be to try to bound the Ápery set with respect to the smallest generator of $\mathcal{S}$. This might be feasible via some generalization of the random sumset theorem in which $q$ is not required to be prime. The proof would need to be modified since it relies on the symmetry of prime cyclic groups.  
 \end{frame}
 
 
